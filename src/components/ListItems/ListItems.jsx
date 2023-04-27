@@ -19,9 +19,8 @@ function ListItems(props) {
         })
     }
 
-    return(
-
-
+    return (
+        <></>
     )
 }
 
