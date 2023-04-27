@@ -3,21 +3,13 @@
 
 function Item(props) {
     return (
-        <ul>
-            {
-            props.groceries.map((grocery) => {
-                return (
-                    <li key={props.grocery.id}>
-                        <p>{props.grocery.name}</p>
-                        <p>{props.grocery.quantity} {props.grocery.unit}</p>  
-                        <button>Buy</button>
-                        <button>Remove</button>
-                    </li>
-                )
-            })
-        }
-        </ul>
-    )
+        <>
+            <p>{props.name}</p>
+            <p>{props.quantity} {props.unit}</p>
+            <button>Buy</button>
+            <button>Remove</button>
+        </>
+    );
 }
 
 export default Item;
