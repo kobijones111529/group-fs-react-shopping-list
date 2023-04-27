@@ -7,12 +7,14 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     console.log("In GET req");
 
-    pool.query(`
+    let sqlText = `
     SELECT * FROM "groceries"
-        WHERE 
-            ORDER BY "purchased" ASC,
-            "name" ASC;
-    `).then((dbRes) => {
+        ORDER BY "purchased" ASC, "name" ASC;
+
+            
+    `;
+
+    pool.query(sqlText).then((dbRes) => {
         console.log("Got groceries from db:", dbRes);
         res.send(dbRes.rows)
     }).catch((dbErr) => {

@@ -13,22 +13,23 @@ function ListItems(props) {
     const fetchGroceries = () => {
         axios({
             method: 'GET',
-            url: '/groceries'
+            url: '/groceries',
         }).then((res) => {
-            console.log("Got our grocery list", res);
-            setGroceryList(res.data)
+            setGroceryList(res.data);
+            console.log("Got our grocery list", groceryList);
         }).catch((err) => {
             console.log("Couldn't get grocery list", err)
         })
     }
 
+
     return(
         <>
             <ul>
                 {/* vvvvv just put this here to show it's needed, this currently doesn't do anything vvvvvv */}
-                <Items 
+                {/* <Items 
                     groceries={groceryList}
-                />
+                /> */}
             </ul>
         </>
 
