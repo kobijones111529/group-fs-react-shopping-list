@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     `;
 
     pool.query(sqlText).then((dbRes) => {
-        console.log("Got groceries from db:", dbRes);
+        console.log("Got groceries from db:", dbRes.rows);
         res.send(dbRes.rows)
     }).catch((dbErr) => {
         console.log("Error communicating with db:", dbErr);
