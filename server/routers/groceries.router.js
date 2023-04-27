@@ -62,7 +62,7 @@ router.delete('/:id', (req, res) => {
     `;
 
     pool.query(sqlText, [req.params.id]).then((dbRes) => {
-        console.log(`Deleted ${req.paramss.id} from db`);
+        console.log(`Deleted ${req.params.id} from db`);
         res.sendStatus(200);
     }).catch((dbErr) => {
         console.log(`Error deleting ${req.params.id} from db:`, dbErr);
