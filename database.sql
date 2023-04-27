@@ -1,3 +1,5 @@
+-- Database name currently configured as "fs-react-shopping" in pool.js
+
 -- Create table
 CREATE TABLE "groceries" (
 	"id" SERIAL PRIMARY KEY,
