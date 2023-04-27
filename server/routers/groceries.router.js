@@ -7,12 +7,14 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     console.log("In GET req");
 
-    pool.query(`
+    let sqlText = `
     SELECT * FROM "groceries"
-            ORDER BY "purchased" ASC,
-            "name" ASC;
-    `).then((dbRes) => {
-        console.log("Got groceries from db:", dbRes);
+        ORDER BY "purchased" ASC, "name" ASC;
+            
+    `;
+
+    pool.query(sqlText).then((dbRes) => {
+        console.log("Got groceries from db:", dbRes.rows);
         res.send(dbRes.rows)
     }).catch((dbErr) => {
         console.log("Error communicating with db:", dbErr);
@@ -50,5 +52,22 @@ router.delete('/clear', (_, res) => {
             res.sendStatus(500);
         });
 });
+
+router.delete('/:id', (req, res) => {
+    console.log("In DELETE by ID route: ", req.params.id);
+
+    let sqlText = `
+        DELETE FROM "groceries"
+            WHERE "id" = $1;
+    `;
+
+    pool.query(sqlText, [req.params.id]).then((dbRes) => {
+        console.log(`Deleted ${req.paramss.id} from db`);
+        res.sendStatus(200);
+    }).catch((dbErr) => {
+        console.log(`Error deleting ${req.params.id} from db:`, dbErr);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;
