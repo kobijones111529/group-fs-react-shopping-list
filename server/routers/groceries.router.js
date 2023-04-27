@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     let sqlText = `
     SELECT * FROM "groceries"
         ORDER BY "purchased" ASC, "name" ASC;
-
             
     `;
 
@@ -19,6 +18,23 @@ router.get('/', (req, res) => {
         res.send(dbRes.rows)
     }).catch((dbErr) => {
         console.log("Error communicating with db:", dbErr);
+        res.sendStatus(500);
+    })
+})
+
+router.delete('/:id', (req, res) => {
+    console.log("In DELETE by ID route: ", req.params.id);
+
+    let sqlText = `
+        DELETE FROM "groceries"
+            WHERE "id" = $1;
+    `;
+
+    pool.query(sqlText, [req.params.id]).then((dbRes) => {
+        console.log(`Deleted ${req.paramss.id} from db`);
+        res.sendStatus(200);
+    }).catch((dbErr) => {
+        console.log(`Error deleting ${req.params.id} from db:`, dbErr);
         res.sendStatus(500);
     })
 })
