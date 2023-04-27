@@ -25,15 +25,21 @@ function ListItems(props) {
 
 
     return(
-        <>
-            <ul>
-                {/* vvvvv just put this here to show it's needed, this currently doesn't do anything vvvvvv */}
-                <Item 
-                    groceries={groceryList}
-                />
-            </ul>
-        </>
-
+        <ul>
+            {groceryList.map(grocery => {
+                return (
+                    <li key={grocery.id}>
+                        <Item
+                            id={grocery.id}
+                            name={grocery.name}
+                            quantity={grocery.quantity}
+                            unit={grocery.unit}
+                            purchased={grocery.purchased}
+                        />
+                    </li>
+                );
+            })}
+        </ul>
     )
 }
 
