@@ -6,6 +6,7 @@ function GroceryForm(props) {
     const [nameInput, setNameInput] = useState('');
     const [quantityInput, setQuantityInput] = useState(0);
     const [unitInput, setUnitInput] = useState('');
+    const [purchasedInput, setPurchasedInput] = useState(false);
 
 const createGrocery = (event) => {
     event.preventDefault();
@@ -16,7 +17,8 @@ const createGrocery = (event) => {
         data: {
             name: nameInput,
             quantity: quantityInput,
-            unit: unitInput
+            unit: unitInput,
+            purchased: purchasedInput,
         }
     }).then((response) => {
         setNameInput('');
