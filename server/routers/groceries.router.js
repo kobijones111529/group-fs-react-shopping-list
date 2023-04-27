@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
 
     pool.query(`
     SELECT * FROM "groceries"
-        WHERE 
             ORDER BY "purchased" ASC,
             "name" ASC;
     `).then((dbRes) => {
@@ -20,5 +19,20 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
     })
 })
+
+router.delete('/clear', (_, res) => {
+    const query = `
+        DELETE FROM "groceries";
+    `;
+
+    pool.query(query)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch(dbErr => {
+            console.error('Error in DELETE /clear:', dbErr);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;
