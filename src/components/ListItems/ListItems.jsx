@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Item from '../Item/Item';
 
 function ListItems(props) {
     const [groceryList, setGroceryList] = useState([]);
@@ -27,9 +28,9 @@ function ListItems(props) {
         <>
             <ul>
                 {/* vvvvv just put this here to show it's needed, this currently doesn't do anything vvvvvv */}
-                {/* <Items 
+                <Item 
                     groceries={groceryList}
-                /> */}
+                />
             </ul>
         </>
 
