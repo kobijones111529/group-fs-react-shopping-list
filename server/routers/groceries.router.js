@@ -7,13 +7,15 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     console.log("In GET req");
 
-    pool.query(`
+    let sqlText = `
     SELECT * FROM "groceries"
-        WHERE 
-            ORDER BY "purchased" ASC,
-            "name" ASC;
-    `).then((dbRes) => {
-        console.log("Got groceries from db:", dbRes);
+        ORDER BY "purchased" ASC, "name" ASC;
+
+            
+    `;
+
+    pool.query(sqlText).then((dbRes) => {
+        console.log("Got groceries from db:", dbRes.rows);
         res.send(dbRes.rows)
     }).catch((dbErr) => {
         console.log("Error communicating with db:", dbErr);
