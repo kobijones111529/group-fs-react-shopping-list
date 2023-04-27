@@ -12,8 +12,10 @@ function ListItems(props) {
         axios({
             method: 'GET',
             url: '/groceries'
-        }).then((dbRes) => {
-            console.log("Got our grocery list", dbRes);
+        }).then((res) => {
+            console.log("Got our grocery list", res);
+        }).catch((err) => {
+            console.log("Couldn't get grocery list", err)
         })
     }
 
