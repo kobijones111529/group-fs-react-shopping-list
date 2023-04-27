@@ -31,15 +31,15 @@ const createGrocery = (event) => {
 
 return (
     <form onSubmit={createGrocery}>
-        <input
+        <p>Item:</p><input
         type="text"
         value={nameInput}
         />
-        <input 
+        <p>Quantity:</p><input 
         type="number"
         value={quantityInput}
         />
-        <input
+        <p>Unit:</p><input
         type="text"
         value={unitInput}
         />
