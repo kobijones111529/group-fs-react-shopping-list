@@ -8,10 +8,10 @@ router.get('/', (req, res) => {
     console.log("In GET req");
 
     pool.query(`
-    SELECT * FROM "groceries"
-        WHERE 
-            ORDER BY "purchased" ASC,
-            "name" ASC;
+        SELECT * FROM "groceries"
+            ORDER BY
+                "purchased" ASC,
+                "name" ASC;
     `).then((dbRes) => {
         console.log("Got groceries from db:", dbRes);
         res.send(dbRes.rows)
