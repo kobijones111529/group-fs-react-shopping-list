@@ -22,6 +22,37 @@ router.get('/', (req, res) => {
     })
 })
 
+router.put('/reset', (_, res) => {
+    const query = `
+        UPDATE "groceries"
+        SET purchased = FALSE;
+    `;
+
+    pool.query(query)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch(dbErr => {
+            console.error('Error in PUT /reset:', dbErr);
+            res.sendStatus(500);
+        });
+});
+
+router.delete('/clear', (_, res) => {
+    const query = `
+        DELETE FROM "groceries";
+    `;
+
+    pool.query(query)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch(dbErr => {
+            console.error('Error in DELETE /clear:', dbErr);
+            res.sendStatus(500);
+        });
+});
+
 router.delete('/:id', (req, res) => {
     console.log("In DELETE by ID route: ", req.params.id);
 
