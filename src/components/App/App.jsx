@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import ListItems from '../ListItems/ListItems'
@@ -9,13 +9,31 @@ import './App.css';
 
 
 function App() {
+    const [groceryList, setGroceryList] = useState([]);
+
+    const fetchGroceries = () => {
+        axios({
+            method: 'GET',
+            url: '/groceries',
+        }).then((res) => {
+            setGroceryList(res.data);
+            console.log("Got our grocery list", groceryList);
+        }).catch((err) => {
+            console.log("Couldn't get grocery list", err)
+        })
+    }
+
+    useEffect(() => {
+        fetchGroceries();
+    }, [])
+
     return (
         <div className="App">
             <Header />
             <main>
             <GroceryForm />
                 <p>Under Construction...</p>
-                <ListItems />
+                <ListItems groceryList={groceryList} />
             </main>
         </div>
     );
