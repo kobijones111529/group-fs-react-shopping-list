@@ -44,7 +44,9 @@ function App() {
         <div className="App">
             <Header />
             <main>
-            <GroceryForm />
+            <GroceryForm 
+            fetchGroceries={fetchGroceries}
+            />
                 <p>Under Construction...</p>
                 <button onClick={clearList}>Clear</button>
                 <ListItems groceryList={groceryList} />
