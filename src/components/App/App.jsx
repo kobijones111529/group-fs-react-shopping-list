@@ -9,12 +9,26 @@ import './App.css';
 
 
 function App() {
+    const clearList = () => {
+        axios({
+            method: 'DELETE',
+            url: '/groceries/clear'
+        })
+            .then(() => {
+                // TODO: update items
+            })
+            .catch(err => {
+                console.error('Error clearing list:', err);
+            });
+    };
+
     return (
         <div className="App">
             <Header />
             <main>
             <GroceryForm />
                 <p>Under Construction...</p>
+                <button onClick={clearList}>Clear</button>
                 <ListItems />
             </main>
         </div>
