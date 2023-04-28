@@ -31,6 +31,19 @@ const createGrocery = (event) => {
     })
 }
 
+const validInput = () => {
+    if (nameInput === '') {
+        return false;
+    }
+
+    const quantityNumeric = Number(quantityInput)
+    if (Number.isNaN(quantityNumeric) || quantityNumeric <= 0) {
+        return false;
+    }
+
+    return true;
+};
+
 return (
     <form onSubmit={createGrocery}>
         <p>Item:</p><input
@@ -48,7 +61,7 @@ return (
         value={unitInput}
         onChange={(event) => {setUnitInput(event.target.value)}}
         />
-        <button>Save</button>
+        <button disabled={!validInput()}>Save</button>
     </form>
     )
 }
