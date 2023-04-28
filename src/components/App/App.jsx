@@ -31,7 +31,9 @@ function App() {
         <div className="App">
             <Header />
             <main>
-            <GroceryForm />
+            <GroceryForm 
+            // fetchGroceries={fetchGroceries}
+            />
                 <p>Under Construction...</p>
                 <ListItems groceryList={groceryList} />
             </main>
