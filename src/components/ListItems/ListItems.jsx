@@ -14,6 +14,7 @@ function ListItems(props) {
                             quantity={grocery.quantity}
                             unit={grocery.unit}
                             purchased={grocery.purchased}
+                            fetchGroceries={props.fetchGroceries}
                         />
                     </li>
                 );

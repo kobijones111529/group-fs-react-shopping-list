@@ -98,4 +98,29 @@ router.post('/', (req,res) => {
     })
 })
 
+router.put('/buy/:id', (req, res) => {
+    // req.body for updating true/false
+    // req.params.id to know which item to update by ID
+    // console.log("in PUT update route", req.body)
+    console.log("in PUT update route", req.params.id);
+
+
+    const sqlQuery = `
+        UPDATE "groceries"
+            SET "purchased" = true
+            WHERE "id" = $1;
+    `;
+
+    const sqlValues = [req.params.id];
+
+    pool.query(sqlQuery, sqlValues)
+        .then((dbRes) => {
+            console.log("Successfully updated db item", dbRes);
+            res.sendStatus(200);
+        }).catch((dbErr) => {
+            console.log("Couldn't update db item", dbErr);
+            res.sendStatus(500);
+        })
+
+})
 module.exports = router;
