@@ -23,6 +23,19 @@ function App() {
         })
     }
 
+    const clearList = () => {
+        axios({
+            method: 'DELETE',
+            url: '/groceries/clear'
+        })
+            .then(() => {
+                fetchGroceries();
+            })
+            .catch(err => {
+                console.error('Error clearing list:', err);
+            });
+    };
+
     useEffect(() => {
         fetchGroceries();
     }, [])
@@ -33,6 +46,7 @@ function App() {
             <main>
             <GroceryForm />
                 <p>Under Construction...</p>
+                <button onClick={clearList}>Clear</button>
                 <ListItems groceryList={groceryList} />
             </main>
         </div>
