@@ -49,7 +49,7 @@ function App() {
             />
                 <p>Under Construction...</p>
                 <button onClick={clearList}>Clear</button>
-                <ListItems groceryList={groceryList} />
+                <ListItems groceryList={groceryList}  fetchGroceries={fetchGroceries}/>
             </main>
         </div>
     );

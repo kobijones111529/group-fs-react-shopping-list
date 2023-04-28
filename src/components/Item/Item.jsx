@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+
 // Targeting the Grocery Items with a new component:
 
 function Item(props) {
@@ -8,13 +8,13 @@ function Item(props) {
     // need a click handler for the buy button to conditionally render 
     const handleBuy = () => {
 
-        console.log('TRIED TO BUY')
+        console.log('In handleBuy');
         axios({
             method: 'PUT',
             url: `/groceries/buy/${props.id}`,
-            data: 'true'
-        }).then ((res) => {
-            console.log("Congratulations on your purchase 🍻");
+        }).then((res) => {
+            console.log("Congratulations on your purchase 🍻", res.data);
+            props.fetchGroceries();
         }).catch((err) => {
             console.log("Couldn't process purchase", err);
         })
@@ -25,15 +25,15 @@ function Item(props) {
     const renderButtons = () => {
         if (!props.purchased) {
             return (
-                <p>Purchased</p>
-            )
-        }
-        else {
-            return (
                 <>
                     <button onClick={handleBuy}>Buy</button>
                     <button>Remove</button>
                 </>
+            )
+        }
+        else {
+            return (
+                <p>Purchased</p>
             )
         }
     }
