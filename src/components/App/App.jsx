@@ -32,7 +32,7 @@ function App() {
             <Header />
             <main>
             <GroceryForm 
-            // fetchGroceries={fetchGroceries}
+            fetchGroceries={fetchGroceries}
             />
                 <p>Under Construction...</p>
                 <ListItems groceryList={groceryList} />

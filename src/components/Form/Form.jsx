@@ -21,11 +21,11 @@ const createGrocery = (event) => {
             purchased: purchasedInput,
         }
     }).then((response) => {
-        props.fetchGroceries();
+        
         setNameInput('');
         setQuantityInput(0);
         setUnitInput('');
-        // props.fetchGroceries();
+        props.fetchGroceries();
     }).catch((error) =>{
         console.log('ERROR:', error);
     })
