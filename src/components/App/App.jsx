@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import ListItems from '../ListItems/ListItems'
@@ -9,18 +9,36 @@ import './App.css';
 
 
 function App() {
+    const [groceryList, setGroceryList] = useState([]);
+
+    const fetchGroceries = () => {
+        axios({
+            method: 'GET',
+            url: '/groceries',
+        }).then((res) => {
+            setGroceryList(res.data);
+            console.log("Got our grocery list", groceryList);
+        }).catch((err) => {
+            console.log("Couldn't get grocery list", err)
+        })
+    }
+
     const clearList = () => {
         axios({
             method: 'DELETE',
             url: '/groceries/clear'
         })
             .then(() => {
-                // TODO: update items
+                fetchGroceries();
             })
             .catch(err => {
                 console.error('Error clearing list:', err);
             });
     };
+
+    useEffect(() => {
+        fetchGroceries();
+    }, [])
 
     return (
         <div className="App">
@@ -29,7 +47,7 @@ function App() {
             <GroceryForm />
                 <p>Under Construction...</p>
                 <button onClick={clearList}>Clear</button>
-                <ListItems />
+                <ListItems groceryList={groceryList} />
             </main>
         </div>
     );
