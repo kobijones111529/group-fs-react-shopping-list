@@ -36,6 +36,19 @@ function App() {
             });
     };
 
+    const resetList = () => {
+        axios({
+            method: 'PUT',
+            url: '/groceries/reset'
+        })
+            .then(() => {
+                fetchGroceries();
+            })
+            .catch(err => {
+                console.error('Error with reset:', err);
+            });
+    };
+
     useEffect(() => {
         fetchGroceries();
     }, [])
@@ -47,6 +60,7 @@ function App() {
             <GroceryForm />
                 <p>Under Construction...</p>
                 <button onClick={clearList}>Clear</button>
+                <button onClick={resetList}>Reset</button>
                 <ListItems groceryList={groceryList} />
             </main>
         </div>
